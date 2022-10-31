@@ -1,0 +1,32 @@
+.path{
+    /* background-color: white; */
+    font-size: 15px;
+    display: flex;
+    align-content: center;
+    height: fit-content
+}
+.productss {
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    background-color: whitesmoke;
+}
+.product-main{
+    width: 66.67%;
+    border: 1px solid red;
+
+}
+.product-aside{
+    width: 30%;
+    border: 1px solid black;
+}
+.img-sldr{
+    width: 100%;
+    border: 2px solid blue;
+}
+.picture{
+    width: 100%;
+}
+.col5{
+    width: 40%;
+}
