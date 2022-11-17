@@ -23,13 +23,17 @@ echo "Connected successfully";
 
 // mysqli_close($conn);
 
-$sql = "UPDATE email SET email='' WHERE id=2";
+$Email = $_POST{'email'};
+
+$sql = "INSERT INTO email (email) VALUES ('$Email')";
 
 if (mysqli_query($conn, $sql)) {
   echo "Record updated successfully";
 } else {
   echo "Error updating record: " . mysqli_error($conn);
 }
+
+// header("location:jumia-index.html");
 
 mysqli_close($conn);
 ?>
@@ -65,7 +69,7 @@ mysqli_close($conn);
             <p class="type">type your email to log in or create a jumia account.</p>
 
             <form method="post" action="sign-up.php" id="form">
-                <input type="email" placeholder="email" name="email" id="email">
+                <input type="email" placeholder="email" name="email" id="email" value="email">
                 <div id="error"></div>
                 <div class="bton">
                     <button class="continue" type="submit">continue</button>
