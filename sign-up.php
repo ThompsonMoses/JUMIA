@@ -23,14 +23,27 @@ echo "Connected successfully";
 
 // mysqli_close($conn);
 
-$Email = $_POST{'email'};
 
-$sql = "INSERT INTO email (email) VALUES ('$Email')";
+if(isset($_POST["submit"])){
+    $Email = $_POST['email'];
+if(empty($_POST["email"])){
+    echo "Error empty all field must be equal";
+} 
+$sql = "SELECT * from email where email = '$Email'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    echo "cannot update twice";
+}
+else{
+    $sql = "INSERT INTO email (email) VALUES ('$Email')";
 
 if (mysqli_query($conn, $sql)) {
-  echo "Record updated successfully";
+  header("location:productpage.html");
 } else {
   echo "Error updating record: " . mysqli_error($conn);
+}
+}
+
 }
 
 // header("location:jumia-index.html");
@@ -72,7 +85,7 @@ mysqli_close($conn);
                 <input type="email" placeholder="email" name="email" id="email" value="email">
                 <div id="error"></div>
                 <div class="bton">
-                    <button class="continue" type="submit">continue</button>
+                    <button class="continue" type="submit" name="submit">continue</button>
                 </div>
                 
                 <a href="#">log in or register with phone number</a>
@@ -85,5 +98,6 @@ mysqli_close($conn);
             <div class="jumia">jumia</div>
         </div>
     </section>
+    <script src="./js/validation.js" defer></script>
 </body>
 </html>
