@@ -1,62 +1,11 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jumia_db";
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
-if (!$conn) {
-  die ("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
-
-// $sql = "INSERT INTO email (email)
-// VALUES ('john@example.com')";
-
-// if (mysqli_query($conn, $sql)) {
-//   echo "New record created successfully";
-// } else {
-//   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-// }
-
-// mysqli_close($conn);
-
-
-if(isset($_POST["submit"])){
-    $Email = $_POST['email'];
-if(empty($_POST["email"])){
-    echo "Error empty all field must be equal";
-} 
-$sql = "SELECT * from email where email = '$Email'";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-    echo "cannot update twice";
-}
-else{
-    $sql = "INSERT INTO email (email) VALUES ('$Email')";
-
-if (mysqli_query($conn, $sql)) {
-  header("location:productpage.html");
-} else {
-  echo "Error updating record: " . mysqli_error($conn);
-}
-}
-
-}
-
-// header("location:jumia-index.html");
-
-mysqli_close($conn);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>jumia | sign-up</title>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/2074525eaa.js" crossorigin="anonymous"></script>
     <!-- my css -->
@@ -73,7 +22,7 @@ mysqli_close($conn);
 
     <section>
         <div class="info">
-            <div class="arrow"><a href="./jumia-index.html" class="bth">&larr;</a></div>
+            <div class="arrow"><a href="./index.html" class="bth">&larr;</a></div>
             <div class="svg">
                 <img class="loogo" src="../JUMIA/Jumia Nigeria _ Online Shopping for Groceries, Appliances & More! 2_files/myjumia-top-logo.png" alt="">
             </div>
@@ -81,7 +30,7 @@ mysqli_close($conn);
             <h1 class="email-address">what's your email address?</h1>
             <p class="type">type your email to log in or create a jumia account.</p>
 
-            <form method="post" action="sign-up.php" id="form">
+            <form method="post" action="http://localhost/JUMIA/connect.php" id="form">
                 <input type="email" placeholder="email" name="email" id="email" value="email">
                 <div id="error"></div>
                 <div class="bton">
